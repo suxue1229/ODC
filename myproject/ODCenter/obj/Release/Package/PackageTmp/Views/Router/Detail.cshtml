@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "Data Details";
+}
+@section Scripts
+{
+    <script type="text/javascript">
+        var linkid = "@ViewData["id"]";
+        var reload = setInterval(Router.loadData, 3000);
+        window.onload = Router.loadData;
+        $
+    </script>
+}
+
+@Html.Partial("_AdminPartial", ViewData["router"] = "active")
+
+<div class="panel-body" id="data_panel" style="padding-top:8px;"></div>
+<div class="panel-body" id="queue_panel" style="padding-top:8px;"></div>
+<div class="panel-body" style="padding-top:8px">
+    <button class="btn btn-default" style="float:right;" onclick="javascript:history.back(-1);">返回</button>
+</div>
+<div id="pop_panel"></div>

@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "Connection Details";
+}
+@section Scripts
+{
+    <script type="text/javascript">
+        var linkid = "@ViewData["id"]", closeurl = "@Url.Action("Close")", detailurl = "@Url.Action("Detail")";
+        var reload = setInterval(Router.loadLink, 3000);
+        window.onload = Router.loadLink;
+    </script>
+}
+
+@Html.Partial("_AdminPartial", ViewData["router"] = "active")
+
+<div class="panel-body" id="link_panel" style="padding-top:8px;">
+</div>
+<hr />
+<div class="panel-body" id="remote_panel" style="padding-top:1px">
+</div>
+<div id="pop_panel"></div>

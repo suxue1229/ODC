@@ -1,0 +1,58 @@
+﻿@using ODCenter.Base;
+@using ODCenter.Controllers;
+@using ODCenter.Models;
+@model IEnumerable<UserInvite>
+@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "注册授权";
+}
+
+@Html.Partial("_AdminPartial", ViewData["usrinvite"] = "active")
+<p style="padding-top:10px;">
+    <a class="btn btn-default" href="@Url.Action("Invite", new { id = "" })">刷新</a>
+    <a class="btn btn-default account-invite-create" href="javascript:void(0);">创建注册授权</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Issued)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Expired)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Account)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OrderBy(x => x.Issued))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Issued)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Expired)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account)
+            </td>
+            <td>
+                <a class="btn btn-manage account-invite-delete" href="javascript:void(0);" data-invite-id="@item.Id" title="删除"><span class="fa fa-trash-o"></span></a>
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,78 @@
+﻿@using System.Configuration;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/font-awesome")
+    @if (Request.Browser.IsMobileDevice)
+    {
+        @Styles.Render("~/Content/mobile")
+    }
+    else
+    {
+        @Styles.Render("~/Content/desktop")
+    }
+    @Scripts.Render("~/bundles/modernizr")
+    @Html.Partial("_IconPartial")
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="@Url.Action("Index","Monitor")"><img src="~/Images/logo.png" height="50" /></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul id="nav_bar_top" class="nav navbar-nav nav-head"></ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <table style="width:100%;margin-top:1px;">
+            <tr>
+                <td class="table-side">
+                    <div id="nav_bar_side" class="list-group nav-side"></div>
+                </td>
+                <td class="table-panel">
+                    <div>@RenderBody()</div>
+                </td>
+            </tr>
+        </table>
+        <hr />
+        <footer>
+            <p class="text-center">
+                <a href="@Url.Action("About","Home")">@ConfigurationManager.AppSettings["Application:Description"]</a> |
+                @if (Request.Cookies["mode"] != null && Request.Cookies["mode"].Value == "full")
+                {
+                    <a class="mode-disp" href="javascript:void(0);" id="mode_lite" title="切换到精简模式">完整模式</a>
+                }
+                else
+                {
+                    <a class="mode-disp" href="javascript:void(0);" id="mode_full" title="切换到完整模式">精简模式</a>
+                }
+                <br />
+                Copyright &copy; @ConfigurationManager.AppSettings["copyright:version"], @ConfigurationManager.AppSettings["copyright:company"]. All Rights Reserved. @ConfigurationManager.AppSettings["ICP:Number"]. <a href="mailto:jerrysoft@163.com">BUG Report</a>
+            </p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquerycoo")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/others")
+    <script type="text/javascript">
+        var domain = "@Url.Action("", "")", controller = "", group = "";
+        var inthdl = setInterval(Navbar.set, 1000);
+        $.ready(Navbar.set());
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

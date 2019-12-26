@@ -1,0 +1,14 @@
+﻿<ul class="nav nav-tabs" style="padding-top:10px;">
+    <li role="presentation" class="@ViewData["institute"]"><a href="@Url.Action("Index", "Institute")">机构</a></li>
+    <li role="presentation" class="@ViewData["group"]"><a href="@Url.Action("Index", "Group")">分组</a></li>
+    <li role="presentation" class="@ViewData["device"]"><a href="@Url.Action("Index", "Device")">设备</a></li>
+    <li role="presentation" class="@ViewData["sensor"]"><a href="@Url.Action("Index", "Sensor")">仪表</a></li>
+    <li role="presentation" class="@ViewData["report"]"><a href="@Url.Action("List", "Report")">报表</a></li>
+    <li role="presentation" class="@ViewData["client"]"><a href="@Url.Action("Index", "Client")">客户端</a></li>
+    <li role="presentation" class="@ViewData["router"]"><a href="@Url.Action("Index", "Router")">路由</a></li>
+    <li role="presentation" class="@ViewData["account"]"><a href="@Url.Action("Edit", "Account")">账户</a></li>
+    <li role="presentation" class="@ViewData["usrgroup"]"><a href="@Url.Action("Group", "Account")">用户组</a></li>
+    <li role="presentation" class="@ViewData["usrinvite"]"><a href="@Url.Action("Invite", "Account")">注册授权</a></li>
+    <li role="presentation" class="@ViewData["connopcserv"]"><a href="@Url.Action("Index", "OPCServ")">OPC机构</a></li>
+</ul>
+<hr style="margin:0;">

@@ -1,0 +1,59 @@
+﻿@using System.Configuration;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/font-awesome")
+    @if (Request.Browser.IsMobileDevice)
+    {
+        @Styles.Render("~/Content/mobile")
+    }
+    else
+    {
+        @Styles.Render("~/Content/desktop")
+    }
+    @Scripts.Render("~/bundles/modernizr")
+    @Html.Partial("_IconPartial")
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="@Url.Action("Index", "Monitor")"><img src="~/Images/logo.png" height="50" /></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p class="text-center">
+                <a href="@Url.Action("About","Home")">@ConfigurationManager.AppSettings["Application:Description"]</a>
+                <br />
+                Copyright &copy; @ConfigurationManager.AppSettings["copyright:version"], @ConfigurationManager.AppSettings["copyright:company"]. All Rights Reserved. @ConfigurationManager.AppSettings["ICP:Number"]. <a href="mailto:jerrysoft@163.com">BUG Report</a>
+            </p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/others")
+    <script type="text/javascript">
+        var domain = "@Url.Action("", "")", controller = "", group = "";
+        var inthdl = setInterval(Navbar.set, 1000);
+        $.ready(Navbar.set());
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

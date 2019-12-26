@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutOpen.cshtml";
+    ViewBag.Title = "信息终端管理";
+}
+
+<form>
+    <div class="form-horizontal">
+        <h3 style="text-align:center">信息终端管理</h3>
+        <div class="form-group" style="text-align:center;">
+            <label class="control-label" style="display:inline-block;">DTU ID后四位:</label>
+            <input class="form-control text-box single-line" style="width:30%;min-width:120px;max-width:360px;display:inline-block;" type="text" id="router_id" />
+            <a class="form-control btn btn-default" style="min-width:60px;max-width:80px;display:inline-block;" id="router_query" href="javascript:void(0);">查询</a>
+        </div>
+    </div>
+</form>
+<div id="router_result"></div>

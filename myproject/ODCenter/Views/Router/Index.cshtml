@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "Router Connections";
+}
+@section Scripts
+{
+    <script type="text/javascript">
+        setInterval(Router.loadList, 3000);
+        window.onload = Router.loadList();
+    </script>
+}
+
+@Html.Partial("_AdminPartial", ViewData["router"] = "active")
+<p style="padding-top:10px;">
+    <a class="btn btn-default" onclick="Router.loadList()">刷新</a>
+</p>
+<div id="link_panel"></div>

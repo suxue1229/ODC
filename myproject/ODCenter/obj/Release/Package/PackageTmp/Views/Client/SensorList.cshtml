@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ODCenter.Base.SensorEx>
+@using ODCenter.Base
+
+@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "客户端仪表链接";
+}
+
+@Html.Partial("_AdminPartial", ViewData["client"] = "active")
+<p style="padding-top:10px;">
+    <a class="btn btn-default" href="@Url.Action("SensorAdd")">增加仪表</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            仪表名称
+        </th>
+        <th>
+            数据类型
+        </th>
+        <th>
+            仪表类型
+        </th>
+        <th>
+            数据来源
+        </th>
+        <th>
+            数值单位
+        </th>
+        <th>
+            显示顺序
+        </th>
+        <th>
+            仪表编码
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OrderBy(x => x.Index).ThenBy(x => x.Sensor.Name))
+    {
+        <tr>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("sensor", item.Sensor.Id);
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sensor.Name)
+                </td>
+                <td>
+                    @item.Sensor.DatType.Description()
+                </td>
+                <td>
+                    @item.Sensor.SenType.Description()
+                </td>
+                <td>
+                    @item.Sensor.Source.Description()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sensor.Unit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sensor.Order)
+                </td>
+                <td>
+                    @Html.EditorFor(modelItem => item.Index, null, "index", new { htmlAttributes = new { @class = "form-control", style = "max-width:100px;" } })
+                </td>
+                <td>
+                    @Html.ActionLink("Remove", "SensorRemove", new { sid = item.Sensor.Id.ToString("N") })
+                </td>
+            }
+        </tr>
+    }
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index", new { id = ViewBag.Institute })
+</div>

@@ -1,0 +1,40 @@
+﻿@using ODCenter.Base
+@using ODCenter.Controllers
+@model IEnumerable<KeyValuePair<String, String>>
+
+@{
+    ViewBag.Title = "报表系统";
+    bool high = @User.IsInRole(UserRoles.Engineer) || @User.IsInRole(UserRoles.Admin);
+    bool low = high || @User.IsInRole(UserRoles.Operator);
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        var timeid = null;
+    </script>
+}
+
+<div class="frame_header col-md-12">报告列表</div>
+@foreach (KeyValuePair<String, String> rpt in Model)
+{
+    <div class="row col-md-12">
+        @rpt.Value
+        <div style="float:right;">
+            @if (low)
+            {
+                <button id="rpt_@rpt.Key" class="btn" style="padding:0;width:28px;" data-toggle="tooltip" title="设置时间" onclick="Report.editTime(this)"><span class="glyphicon glyphicon-lg glyphicon-calendar"></span></button>
+                <button id="rpv_@rpt.Key" class="btn btn-link" style="padding:0;width:28px;" data-toggle="tooltip" title="查看报告" onclick="Report.genReport(this)"><span class="glyphicon glyphicon-lg glyphicon-eye-open"></span></button>
+                <button id="rpp_@rpt.Key" class="btn btn-link" style="padding:0;width:28px;" data-toggle="tooltip" title="下载PDF" onclick="Report.genReport(this)"><span class="glyphicon glyphicon-lg glyphicon-file"></span></button>
+            }
+            @if (high)
+            {
+                <button id="rpe_@rpt.Key" class="btn btn-link" style="padding:0;width:28px;" data-toggle="tooltip" title="下载Excel" onclick="Report.genReport(this)"><span class="glyphicon glyphicon-lg glyphicon-list-alt"></span></button>
+            }
+        </div>
+    </div>
+}
+
+<div id="time_panel"></div>
+
+

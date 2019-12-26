@@ -1,0 +1,284 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+$navwidth: 481px;
+
+.nav-side {
+    position: relative;
+    float: left;
+    margin: 0;
+
+    @media(min-width:0) {
+        width: auto;
+        display: none;
+    }
+
+    @media(min-width:$navwidth) {
+        width: 160px;
+        display: table-cell;
+    }
+
+    .side-main {
+        font-size: 15px;
+        font-weight: bold;
+        padding: 7px 7px 7px 7px;
+    }
+
+    .side-sub {
+        font-size: 12px;
+        padding: 7px 7px 7px 35px;
+    }
+}
+
+.nav-head {
+    @media(min-width:0) {
+        display: normal;
+    }
+
+    @media(min-width:$navwidth) {
+        width: auto;
+        display: none;
+    }
+
+    .head-main {
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+        line-height: 0;
+    }
+
+    .head-sub {
+        text-indent: 12px;
+        font-size: 12px;
+        margin: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        line-height: 0;
+    }
+}
+
+.table-side {
+    vertical-align: top;
+
+    @media(min-width:0) {
+        width: 0;
+        padding-right: 0;
+    }
+
+    @media(min-width:$navwidth) {
+        width: 160px;
+        padding-right: 8px;
+    }
+}
+
+.table-panel {
+    width: auto;
+    vertical-align: top;
+
+    @media(min-width:1px) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    @media(min-width:$navwidth) {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
+
+.sensor_frame {
+    float: left;
+    font-size: 14px;
+    position: relative;
+    padding: 3px 3px 3px 3px;
+}
+
+.frame_header {
+    float: left;
+    position: relative;
+    width: 100%;
+    padding-bottom: 5px;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+}
+
+.sensor_btn {
+    width: 100%;
+    text-align: left;
+    padding: 3px 0 3px 0;
+    padding-left: 8px;
+    border-radius: 8px;
+    background-color: lightgreen;
+}
+
+a {
+    &.mode-disp {
+        &:link {
+            color: dimgray;
+        }
+
+        &:visited {
+            color: dimgray;
+        }
+
+        &:hover {
+            color: dimgray;
+        }
+
+        &:active {
+            color: dimgray;
+        }
+    }
+}
+
+.btn-manage {
+    color: black;
+    padding: 1px 6px 1px 6px;
+}
+
+.detail_label {
+    text-align: right;
+    padding-right: 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.detail_value {
+    text-align: left;
+    text-indent: 15px;
+    padding-left: 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+@each $window, $frame in (0 100%, 241px 50%, 481px 100%, 641px 50%, 881px 33.3%, 1121px 25%, 1361px 20%) {
+    @media (min-width:#{$window}) {
+        .sensor_frame {
+            width: $frame;
+        }
+    }
+}
+
+@each $scale, $size in (sm 12px, md 14px, lg 16px) {
+    .glyphicon-#{$scale} {
+        font-size: $size;
+        line-height: $size;
+    }
+}
+
+//Map
+#map-container {
+    padding-top: 3px;
+    width: 100%;
+    height: 90%;
+
+    #map-content {
+        width: 100%;
+        height: 100%;
+
+        .anchorBL {
+            display: none;
+        }
+
+        .BMap_scaleCtrl {
+            display: block !important;
+            left: 0 !important;
+            bottom: 0 !important;
+        }
+
+        label {
+            max-width: none;
+        }
+    }
+
+    #map-control {
+        position: relative;
+        right: 10px;
+        bottom: 10px;
+        //border: 1px solid red;
+        #ins-btn {
+            padding: 2px 5px 2px 5px;
+            background-color: white;
+            border-radius: 3px 0 0 3px;
+            border: 1px solid rgb(139, 164, 220);
+        }
+
+        #ins-list {
+            display: none;
+            width: 200pt;
+            height: 300pt;
+            background-color: white;
+            border: 1px solid rgb(139, 164, 220);
+            border-radius: 3px;
+            box-shadow: 2px 2px 3px rgba(0, 0, 0,0.35);
+            overflow: hidden;
+            z-index: -1;
+
+            #ins-title {
+                width: 100%;
+                height: 24px;
+                font-size: 16px;
+                padding-left: 3px;
+                color: white;
+                background-color: rgb(26, 132, 247);
+            }
+
+            #ins-box {
+                position: absolute;
+                top: 2px;
+                right: 0;
+                padding-left: 5px;
+                padding-right: 5px;
+                color: white;
+            }
+
+            #ins-body {
+                width: 100%;
+                position: absolute;
+                top: 24px;
+                bottom: 0;
+                overflow-x: hidden;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .ins-item {
+                padding: 3px 2px 3px 2px;
+                white-space: nowrap;
+                border-radius: 2px;
+
+                &:nth-child(odd) {
+                    background-color: white;
+                }
+
+                &:nth-child(even) {
+                    background-color: rgb(181,213,255);
+                }
+
+                .description {
+                    color: darkgray;
+                    padding-left: 2px;
+
+
+                    &:before {
+                        content: "地址：";
+                    }
+                }
+            }
+        }
+    }
+}

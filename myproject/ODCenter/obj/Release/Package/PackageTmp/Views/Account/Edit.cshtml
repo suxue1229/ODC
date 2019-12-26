@@ -1,0 +1,131 @@
+﻿@using ODCenter.Base;
+@using ODCenter.Controllers;
+@using ODCenter.Models;
+@model IEnumerable<ApplicationUser>
+@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "账户管理";
+}
+
+@Html.Partial("_AdminPartial", ViewData["account"] = "active")
+<p style="padding-top:10px;">
+    <a class="btn btn-default" href="@Url.Action("Edit", new { id = "" })">刷新</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("用户名")
+        </th>
+        <th>姓名</th>
+        <th>@Html.DisplayNameFor(model => model.Company)</th>
+        <th>@Html.DisplayNameFor(model => model.Department)</th>
+        <th>激活</th>
+        <th></th>
+        <th>
+            @Html.DisplayName("用户角色")
+        </th>
+        <th></th>
+        <th>
+            @Html.DisplayName("所属机构")
+        </th>
+        <th></th>
+        <th>
+            @Html.DisplayName("机构授权")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OrderBy(x => x.Email))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)@Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                <p title="@item.Company">
+                    @if (!String.IsNullOrWhiteSpace(item.Company) && item.Company.Length > 8)
+                    {
+                        @item.Company.Substring(0, 5)@Html.Raw("...")
+                    }
+                    else
+                    {
+                        @item.Company
+                    }
+                </p>
+            </td>
+            <td>
+                <p title="@item.Department">
+                    @if (!String.IsNullOrWhiteSpace(item.Department) && item.Department.Length > 8)
+                    {
+                        @item.Department.Substring(0, 5)@Html.Raw("...")
+                    }
+                    else
+                    {
+                        @item.Department
+                    }
+                </p>
+            </td>
+            <td>
+                @ExtMvc.IconStatus(item.EmailConfirmed)
+            </td>
+            <td>
+                @if (!item.EmailConfirmed)
+                {
+                    <a class="btn btn-manage" href="@Url.Action("Clean", new { id = item.Id })" title="清理"><span class="fa fa-trash-o"></span></a>
+                }
+            </td>
+
+            <td>
+                @{
+                    var rolst = Roles.GetRolesForUser(item.UserName);
+                    var rodes = "角色列表：&#13;";
+                    foreach (var s in rolst)
+                    {
+                        rodes += s + "&#13;";
+                    }
+                    <span title="@Html.Raw(rodes)">@rolst.Length 个角色</span>
+                }
+            </td>
+            <td>
+                <a class="btn btn-manage" href="@Url.Action("Role", new { id = item.Id })" title="设置用户角色"><span class="fa fa-user-secret"></span></a>
+            </td>
+            <td>
+                @if (item.Institute.HasValue && DbProvider.Institutes.ContainsKey(item.Institute.Value.ToString("N")))
+                {
+                    @DbProvider.Institutes[item.Institute.Value.ToString("N")].Name
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Institute)
+                }
+            </td>
+            <td>
+                <a class="btn btn-manage" href="@Url.Action("Auth", new { id = item.Id })" title="设置所属机构"><span class="fa fa-home"></span></a>
+            </td>
+            <td>
+                @{
+                    var indes = "机构列表：&#13;";
+                    foreach (var id in item.Institutes)
+                    {
+                        if (!DbProvider.Institutes.ContainsKey(id.ToString("N")))
+                        {
+                            continue;
+                        }
+                        var ins = DbProvider.Institutes[id.ToString("N")];
+                        if (ins != null)
+                        {
+                            indes += ins.Name + "&#13;";
+                        }
+                    }
+                    <span title="@Html.Raw(indes)">@item.Institutes.Length 个机构</span>
+                }
+            </td>
+            <td>
+                <a class="btn btn-manage" href="@Url.Action("Institute", new { id = item.Id })" title="设置机构授权"><span class="fa fa-shield"></span></a>
+            </td>
+        </tr>
+    }
+</table>

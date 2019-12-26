@@ -1,0 +1,94 @@
+﻿@using ODCenter.Base
+@model IEnumerable<ODCenter.Models.ReportInfo>
+
+@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "报表管理";
+    Guid? institute = ViewData["institute"] as Guid?;
+}
+
+@Html.Partial("_AdminPartial", ViewData["report"] = "active")
+<p style="padding-top:10px;">
+    @if (institute.HasValue)
+    {
+        <a class="btn btn-default" href="@Url.Action("Create", new { id = institute.Value.ToString("N") })">创建报表</a>
+        <a class="btn btn-default" href="@Url.Action("List", new { id = "" })">显示全部</a>
+    }
+    else
+    {
+        <a class="btn btn-default" href="@Url.Action("List", new { id = "" })">刷新</a>
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Institute)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PageInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataSource)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enabled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modifier)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @if (DbProvider.Institutes.ContainsKey(item.Institute.ToString("N")))
+                {
+                    @DbProvider.Institutes[item.Institute.ToString("N")].Name
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Institute)
+                }
+            </td>
+            <td>
+                @if (item.PageInfo!=null&&item.PageInfo.Length > 20)
+                {
+                    @String.Format("{0}...",item.PageInfo.Substring(0,17))
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.PageInfo)
+                }
+            </td>
+            <td>
+                @if (item.DataSource != null && item.DataSource.Length > 20)
+                {
+                    @String.Format("{0}...", item.DataSource.Substring(0, 17))
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.DataSource)
+                }
+            </td>
+            <td>
+                @ExtMvc.IconStatus(item.Enabled)
+            </td>
+            <td>
+                <span class="glyphicon glyphicon-md glyphicon-user" title="@item.Modifier"></span>
+            </td>
+            <td>
+                <a class="btn btn-manage" href="@Url.Action("Edit", new { id = item.Id.ToString("N") })" title="编辑"><span class="fa fa-edit"></span></a>
+                <a class="btn btn-manage" href="@Url.Action("Details", new { id = item.Id.ToString("N") })" title="详细信息"><span class="fa fa-info-circle"></span></a>
+                <a class="btn btn-manage" href="@Url.Action("Delete", new { id = item.Id.ToString("N") })" title="删除"><span class="fa fa-trash-o"></span></a>
+            </td>
+        </tr>
+    }
+</table>

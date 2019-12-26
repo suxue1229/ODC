@@ -1,0 +1,150 @@
+﻿@section Scripts
+{
+    <script type="text/javascript">
+        var controller = "@ViewData["controller"]", ins = "@ViewData["institute"]", group = "@ViewData["group"]", offset = 0;
+        setInterval(Monitor.loadList, 1500);
+        setInterval(Monitor.updateImage, 1500);
+        window.onload = function () {
+            Monitor.loadList();
+            $.each(images, function (idx, img) {
+                if (ins == img.id && group == "") {
+                    var html = "<img src='" + domain + img.src + "' style='width:100%;height:auto;font-size:" + img.size + ";'>";
+                    $.each(img.tags, function (idx, tag) {
+                        html += "<span id='" + tag[0] + "_img' style=position:absolute;top:" + tag[1] + ";left:" + tag[2];
+                        if (tag[3] != null) {
+                            html += ";font-size:" + tag[3];
+                        }
+                        if (tag[4] != null) {
+                            html += ";color:" + tag[4];
+                        }
+                        //html += ";'>" + tag[5] + "</span>";
+                        html += ";'>#####</span>";
+                    });
+                    var panel = document.getElementById("image_panel");
+                    if (panel != null) {
+                        panel.style.fontSize = panel.clientWidth / 85 + "px";
+                        panel.innerHTML = html;
+                    }
+                }
+            });
+        };
+        window.onresize = function () {
+            var panel = document.getElementById("image_panel");
+            if (panel != null) {
+                panel.style.fontSize = panel.clientWidth / 85 + "px";
+            }
+        }
+        var images = [{
+            id: "d6dd24e409b349c2bc066b3e356b7a9d",
+            src: "images/institute/d6dd24e409b349c2bc066b3e356b7a9d_m.jpg",
+            size: "14px",
+            tags: [
+                ["7844e848193f44b2b210d53e79bec2d9", "60.9%", "5.2%", "100%", "white", "进水COD"],
+                ["a927cac63bc04888974eccd8d279767d", "63.7%", "5.2%", "100%", "white", "进水氨氮"],
+                ["960c660362a9495981b96661cea2c535", "66.4%", "5.2%", "100%", "white", "进水PH"],
+                ["f67abf915bfd4ae69291b1523f925f03", "69.1%", "5.2%", "100%", "white", "进水流量"],
+
+                ["fa1d224fac5f4a1dbd983e6cd1baf515", "56.3%", "35.0%", "90%", "white", "1#缺氧池ORP"],
+                ["597ae1d4539f4fbcaa158b4eb3fd175a", "58.9%", "35.0%", "90%", "white", "1#缺氧池DO"],
+                ["b1a5164b466d43bbaad6f3aedd84ea46", "61.4%", "35.0%", "90%", "white", "1#缺氧池PH"],
+
+                ["06d47694238743aeb938a1bfdbaefed6", "56.3%", "38.5%", "90%", "white", "2#缺氧池ORP"],
+                ["51fbab43063e45eca6fd222b107c207c", "58.9%", "38.5%", "90%", "white", "2#缺氧池DO"],
+
+                ["32b86312c1ed47a08bf56b9ccd22a965", "56.0%", "54.0%", "90%", "white", "1#厌氧池ORP"],
+                ["a30e0111c3df421d804115e4be2f8c7c", "58.7%", "54.0%", "90%", "white", "1#厌氧池PH"],
+
+                ["71a4678eedab4343a86a324e08500b68", "56.0%", "57.5%", "90%", "white", "2#厌氧池ORP"],
+
+                ["c685abcf78744c52b61bf08b260114a1", "92.6%", "42.3%", "90%", "white", "1#好氧池液位"],
+                ["f499fb057c814926a48229f5f7f093af", "95.2%", "42.3%", "90%", "white", "1#好氧池DO"],
+
+                ["982c4bb88e5a4afaba4c3a72123daab0", "92.6%", "45.6%", "90%", "white", "2#好氧池液位"],
+                ["3cc9fa5cf3a54257bf3f2713ebf8bb38", "95.2%", "45.6%", "90%", "white", "2#好氧池DO"],
+
+                ["be260baebc3f4ed09b19dded3127dac9", "92.6%", "48.9%", "90%", "white", "3#好氧池液位"],
+
+                ["16da86d75d894d29972ecaa79565b6b3", "92.6%", "52.2%", "90%", "white", "4#好氧池液位"],
+
+                ["14d4ff2f9a7844c7a94d50fa8f7fb49f", "48.7%", "70.0%", "100%", "white", "MBR产水COD"],
+                ["a642efaa2af74721b9e04fc05bae57a3", "51.7%", "70.0%", "100%", "white", "MBR产水氨氮"],
+                ["5d653a4b056447ff81a8c8a6b502949a", "54.5%", "70.0%", "100%", "white", "MBR产水PH"],
+                ["0217fd6263634806af91b1f61c1ae9f0", "57.1%", "70.0%", "100%", "white", "MBR产水流量"],
+
+                ["13a221abc1d449c3a516919ad1b75778", "89.8%", "63.9%", "90%", "white", "1#MBR产水泵流量"],
+                ["efa76c8309da414fb7e185a3ed1386f5", "92.4%", "63.9%", "90%", "white", "1#MBR产水泵压力"],
+
+                ["a58c2261671a45b49e489a8a6fac3e9f", "89.8%", "67.4%", "90%", "white", "2#MBR产水泵流量"],
+                ["0d3e09646ba14e038a9b919ebfd77a2b", "92.4%", "67.4%", "90%", "white", "2#MBR产水泵压力"],
+
+                ["ae0313a43fed40e88ec9541f70b6ec88", "89.8%", "70.9%", "90%", "white", "3#MBR产水泵流量"],
+                ["edbdf970ded0460e9e0b0c554c2ea39b", "92.4%", "70.9%", "90%", "white", "3#MBR产水泵压力"],
+
+                ["78e4a8172b014a81b2cbdeee6a278981", "89.8%", "74.4%", "90%", "white", "4#MBR产水泵流量"],
+                ["6cde5d06ee9c4d5cb5882e9b9e2812a3", "92.4%", "74.4%", "90%", "white", "4#MBR产水泵压力"],
+
+                ["5b59821e81fb4e1680ecf679bb9656a5", "63.6%", "65.6%", "90%", "white", "膜池回流渠MLSS1"],
+                ["c99879a145e343a69b61851f3ee46df9", "66.1%", "65.6%", "90%", "white", "膜池回流渠MLSS2"],
+                ["0e7a7828dc4340f5a6a68e790e6c2fbe", "68.6%", "65.6%", "90%", "white", "MBR产水浊度"],
+
+                ["489b7e5bccad4f609da50c9172321477", "50.8%", "86.4%", "90%", "white", "1#DF产水压力"],
+                ["094596d7c714481b8746f39dde0b3994", "53.5%", "86.4%", "90%", "white", "1#DF进口流量"],
+                ["f8fb6e86240940ff8cb6afb0affae9ad", "56.2%", "86.4%", "90%", "white", "1#DF_PH"],
+                ["16c6bfec6f584d6e82ca8f77f56d9e63", "58.8%", "86.4%", "90%", "white", "1#DF电导"],
+                ["f767ece603b94f928bcc23aefa77bdfe", "61.5%", "86.4%", "90%", "white", "1#DF产水流量"],
+
+                ["9ebe1a7273c04aab8145ccc63e12c2b3", "50.8%", "90.2%", "90%", "white", "2#DF产水压力"],
+                ["2424953d442d4a20ba2fb7f3e3edc285", "53.5%", "90.2%", "90%", "white", "2#DF进口流量"],
+                ["de0a0f4fa28b446f8718fe092667fbbf", "56.2%", "90.2%", "90%", "white", "2#DF_PH"],
+                ["311ab65a0d984b2ea6543611f03c5688", "58.8%", "90.2%", "90%", "white", "2#DF电导"],
+                ["57b1224e4b1b465c86a0c8a68854b51a", "61.5%", "90.2%", "90%", "white", "2#DF产水流量"],
+
+                ["2e0c92589c344d1ead087d9e02f8c018", "50.8%", "94.0%", "90%", "white", "3#DF产水压力"],
+                ["c5f9db414bce4231a2e55a81db442b61", "53.5%", "94.0%", "90%", "white", "3#DF进口流量"],
+                ["ff9aee2c370d40d2ac28995cb4ef775e", "56.2%", "94.0%", "90%", "white", "3#DF_PH"],
+                ["679b896ffc1f482bbfcf9f7dae436b0a", "58.8%", "94.0%", "90%", "white", "3#DF电导"],
+                ["70db564358824200938bbe17a734e056", "61.5%", "94.0%", "90%", "white", "3#DF产水流量"]
+            ]
+        }, {
+            id: "4ee8440f4e4746afb10c08066e356f3d",
+            src: "images/institute/4ee8440f4e4746afb10c08066e356f3d_m.jpg",
+            size: "14px",
+            tags: [
+                ["59ac73ad3ac2468dbef93438d68ad376", "68.6%", "87.4%", "160%", "white", "产水泵"],
+                ["6289185e30b64b9099d92e85bb2de898", "45.5%", "33.2%", "160%", "white", "除磷泵"],
+                ["46784d60c69b4f768df29358de8f2c01", "47.6%", "82.5%", "160%", "white", "风机"],
+                ["0a6f34e7c6864665956e644d48c64657", "95.5%", "50.0%", "160%", "white", "回流泵"],
+                ["d12eb4338343487e87c8801efdbba1e3", "76.8%", "28.1%", "130%", "white", "搅拌器1"],
+                ["a098017f482f4486a44c2244296737ac", "76.8%", "43.6%", "130%", "white", "搅拌器2"],
+                ["dc38f963c1a443eca820c8ae11d85287", "76.3%", "8.5%", "160%", "white", "提升泵"],
+
+                ["ddf40ca1d054436897c874d5ce336c89", "15.6%", "39.1%", "160%", "white", "压力"],
+                ["50277a2b359f48078f139366f15d5ac6", "15.9%", "15.9%", "160%", "white", "瞬时流量"],
+                ["e1b45f769d2d43e19750d3c51834c9c8", "15.9%", "87.9%", "160%", "white", "电能"],
+                ["2fdf655ce39a49df81aaa1cdf55bb233", "15.9%", "65.6%", "160%", "white", "累计产水量"],
+            ]
+        }, {
+            id: "031d278802e141219c20b9d3b39601c6",
+            src: "images/institute/031d278802e141219c20b9d3b39601c6_m.jpg",
+            size: "14px",
+            tags: [
+                ["8b0e4ed9d8b5411a997e45aea2e6d638", "68.6%", "87.4%", "160%", "white", "产水泵"],
+                ["568de972baf74eaea1ab27fc79c0bd89", "45.5%", "33.2%", "160%", "white", "除磷泵"],
+                ["ea883cbade59482282400021203dfaab", "47.6%", "82.5%", "160%", "white", "风机"],
+                ["c313a725b8534939b704cf148ba7fcc5", "95.5%", "50.0%", "160%", "white", "回流泵"],
+                ["17d3300c0cf6480484db448d8a6d3c26", "76.8%", "28.1%", "130%", "white", "搅拌器1"],
+                ["944800e5956d42b08bface2fb084866a", "76.8%", "43.6%", "130%", "white", "搅拌器2"],
+                ["9ae71bc1d2da4923b47eda2eedf3e104", "76.3%", "8.5%", "160%", "white", "提升泵"],
+
+                ["ed17b5843c0a4d0badfe1705c2c236cf", "15.6%", "39.1%", "160%", "white", "压力"],
+                ["36d2607c8e044cbfa6413dd7926708f0", "15.9%", "15.9%", "160%", "white", "瞬时流量"],
+                ["6feb5501de9d4a2f979dcae0e8b1ae90", "15.9%", "87.9%", "160%", "white", "电能"],
+                ["0ac77936f09045ffa4cabdd9b9f97e6c", "15.9%", "65.6%", "160%", "white", "累计产水量"],
+            ]
+        }];
+    </script>
+}
+<div id="image_panel" class="panel-body row" style="position:relative;width:100%;height:auto;padding:2px;"></div>
+<div id="list_panel" class="panel-body row" style="padding:0;"></div>
+<div id="sen_edit_panel"></div>
+

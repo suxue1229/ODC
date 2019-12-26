@@ -1,0 +1,10 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+}
+
+<div>
+    <h2>@ViewBag.Title</h2>
+    <p style="font-size:120%;line-height:150%;">
+        @MvcHtmlString.Create(ViewData["body"].ToString())
+    </p>
+</div>

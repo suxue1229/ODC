@@ -1,0 +1,42 @@
+﻿Enable-Migrations -EnableAutomaticMigrations -ContextTypeName ODCenter.Models.ApplicationDbContext -MigrationsDirectory:Migrations\User
+Add-Migration -ConfigurationTypeName ODCenter.Migrations.User.Configuration Initial
+Update-Database -ConfigurationTypeName ODCenter.Migrations.User.Configuration -Verbose
+
+Enable-Migrations -EnableAutomaticMigrations -ContextTypeName ODCenter.Models.ClientDbContext -MigrationsDirectory:Migrations\Client
+Add-Migration -ConfigurationTypeName ODCenter.Migrations.Client.Configuration Initial
+Update-Database -ConfigurationTypeName ODCenter.Migrations.Client.Configuration -Verbose
+
+Enable-Migrations -EnableAutomaticMigrations -ContextTypeName ODCenter.Models.DeviceDbContext -MigrationsDirectory:Migrations\Device
+Add-Migration -ConfigurationTypeName ODCenter.Migrations.Device.Configuration Initial
+Update-Database -ConfigurationTypeName ODCenter.Migrations.Device.Configuration -Verbose
+
+Enable-Migrations -EnableAutomaticMigrations -ContextTypeName ODCenter.Models.GraphDbContext -MigrationsDirectory:Migrations\Graph
+Add-Migration -ConfigurationTypeName ODCenter.Migrations.Graph.Configuration Initial
+Update-Database -ConfigurationTypeName ODCenter.Migrations.Graph.Configuration -Verbose
+
+Enable-Migrations -EnableAutomaticMigrations -ContextTypeName ODCenter.Models.GroupDbContext -MigrationsDirectory:Migrations\Group
+Add-Migration -ConfigurationTypeName ODCenter.Migrations.Group.Configuration Initial
+Update-Database -ConfigurationTypeName ODCenter.Migrations.Group.Configuration -Verbose
+
+Enable-Migrations -EnableAutomaticMigrations -ContextTypeName ODCenter.Models.InstituteDbContext -MigrationsDirectory:Migrations\Institute
+Add-Migration -ConfigurationTypeName ODCenter.Migrations.Institute.Configuration Initial
+Update-Database -ConfigurationTypeName ODCenter.Migrations.Institute.Configuration -Verbose
+
+Enable-Migrations -EnableAutomaticMigrations -ContextTypeName ODCenter.Models.SensorDbContext -MigrationsDirectory:Migrations\Sensor
+Add-Migration -ConfigurationTypeName ODCenter.Migrations.Sensor.Configuration Initial
+Update-Database -ConfigurationTypeName ODCenter.Migrations.Sensor.Configuration -Verbose
+
+Enable-Migrations -EnableAutomaticMigrations -ContextTypeName ODCenter.Models.ReportDbContext -MigrationsDirectory:Migrations\Report
+Add-Migration -ConfigurationTypeName ODCenter.Migrations.Report.Configuration Initial
+Update-Database -ConfigurationTypeName ODCenter.Migrations.Report.Configuration -Verbose
+
+
+
+Update-Database -ConfigurationTypeName ODCenter.Migrations.User.Configuration -Verbose
+Update-Database -ConfigurationTypeName ODCenter.Migrations.Client.Configuration -Verbose
+Update-Database -ConfigurationTypeName ODCenter.Migrations.Device.Configuration -Verbose
+Update-Database -ConfigurationTypeName ODCenter.Migrations.Graph.Configuration -Verbose
+Update-Database -ConfigurationTypeName ODCenter.Migrations.Group.Configuration -Verbose
+Update-Database -ConfigurationTypeName ODCenter.Migrations.Institute.Configuration -Verbose
+Update-Database -ConfigurationTypeName ODCenter.Migrations.Sensor.Configuration -Verbose
+Update-Database -ConfigurationTypeName ODCenter.Migrations.Report.Configuration -Verbose

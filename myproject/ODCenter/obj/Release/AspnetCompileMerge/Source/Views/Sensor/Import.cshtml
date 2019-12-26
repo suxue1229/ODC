@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "批量导入仪表";
+}
+
+@Html.Partial("_AdminPartial", ViewData["sensor"] = "active")
+<div>
+    <h4>@ViewBag.Title</h4>
+    <hr style="margin-top:5px;margin-bottom:5px;" />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <p style="font-weight:bold;">Usage:</p>
+        <div class="row" style="margin-left:20px;">
+            <div class="col-md-2" style="color:dimgray;">Section "Default Values":</div>
+            <div class="col-md-10" style="color:dimgray;">
+                Define the default properties of sensors when they are not specified.
+                The syntax is "default.{property}={value}" and one row for each property.
+                Available properties are Type(Integer/String), Source(Integer/String), opchost (String), opcserver (String), interval (Integer), minimum (Double), maximum (Double), offset (Double) and gain (Double).
+            </div>
+            <div class="col-md-2" style="color:dimgray;">Section "List of Sensors":</div>
+            <div class="col-md-10" style="color:dimgray;">
+                List of sensor properties seperated with comma.
+                Each row should contain sensor name (String), sensor type (Integer/String), data source (Integer/String), opc host (String), opc server (String), opc item (String), interval (Integer), lower limit (Double), upper limit (Double), gain (Double), offset (Double) and unit (String).
+                Leave the corresponding position empty when using the default properties.
+            </div>
+        </div>
+        @Html.TextArea("Sentxt", "//Default Values \ndefault.type=\ndefault.source=\ndefault.opchost=local\ndefault.opcserver=\ndefault.interval=3\ndefault.minimum=\ndefault.maximum=\ndefault.gain=1\ndefault.offset=0\n\n//List of Sensors\n", new { @style = "width:100%;height:640px;font-size:16px;max-width:none;" })
+        <br />
+        <div class="col-xs-12" style="text-align:right;">
+            <input class="btn btn-default btn-primary" style="margin-top:10px;" type="submit" value="下一步" />
+        </div>
+    }
+</div>
+
+

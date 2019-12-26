@@ -1,0 +1,73 @@
+﻿@model ODCenter.Models.ReportInfo
+
+@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "删除报表";
+}
+
+@Html.Partial("_AdminPartial", ViewData["report"] = "active")
+
+<h3>@ViewBag.Title</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Institute)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Institute)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PageInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PageInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataSource)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataSource)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Enabled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enabled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modifier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modifier)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回列表", "List")
+        </div>
+    }
+</div>

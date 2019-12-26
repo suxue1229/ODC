@@ -1,0 +1,79 @@
+﻿@using ODCenter.Base
+@model IEnumerable<ODCenter.Base.Sensor>
+
+@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "分组仪表链接";
+    List<Guid> ids = ViewData["VisIds"] as List<Guid>;
+}
+
+@Html.Partial("_AdminPartial", ViewData["group"] = "active")
+<p style="padding-top:10px;">
+    <a class="btn btn-default" href="@Url.Action("SensorAdd")">增加仪表</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("仪表名称")
+        </th>
+        <th>
+            数据类型
+        </th>
+        <th>
+            仪表类型
+        </th>
+        <th>
+            数据来源
+        </th>
+        <th>
+            数值单位
+        </th>
+        <th>
+            显示顺序
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OrderBy(x => x.Name))
+    {
+        var color = ids.Contains(item.Id) ? "white" : "lightgray";
+        <tr style="background-color:@color">
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @item.DatType.Description()
+            </td>
+            <td>
+                @item.SenType.Description()
+            </td>
+            <td>
+                @item.Source.Description()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order)
+            </td>
+            <td>
+                @if (ids.Contains(item.Id))
+                {
+                    @Html.ActionLink("Hide", "SensorHide", new { sid = item.Id.ToString("N") })
+                }
+                else
+                {
+                    @Html.ActionLink("Show", "SensorShow", new { sid = item.Id.ToString("N") })
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Remove", "SensorRemove", new { sid = item.Id.ToString("N") })
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    @Html.ActionLink("返回列表", "Index", new { id = ViewBag.Institute })
+</div>

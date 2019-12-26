@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ODCenter.Base.Device>
+@using ODCenter.Base
+
+@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "分组设备链接";
+}
+
+@Html.Partial("_AdminPartial", ViewData["group"] = "active")
+<p style="padding-top:10px;">
+    <a class="btn btn-default" href="@Url.Action("DeviceAdd")">增加设备</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("设备名称")
+        </th>
+        <th>
+            @Html.DisplayName("状态来源")
+        </th>
+        <th>
+            @Html.DisplayName("设备状态")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OrderBy(x => x.Name))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @item.Statsrc.Description()
+            </td>
+            <td>
+                @Device.WebStatus(item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("移除设备", "DeviceRemove", new { did = item.Id.ToString("N") })
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    @Html.ActionLink("返回列表", "Index", new { id = ViewBag.Institute })
+</div>

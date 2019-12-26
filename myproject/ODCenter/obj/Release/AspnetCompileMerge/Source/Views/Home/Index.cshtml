@@ -1,0 +1,77 @@
+﻿@using ODCenter.Base
+@using ODCenter.Models
+@model LoginViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "信息平台";
+}
+
+<div class="row" style="width:100%;">
+    <div class=" col-xs-12" style="height:100px;">
+        <h2 style="text-align:center;">
+            <a data-toggle="modal" data-target="#loginmodal" class="btn btn-primary btn-lg">登录</a>
+        </h2>
+        <div id="loginmodal" class="modal fade" role="dialog" aria-labelledby="modallabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    @using (Html.BeginForm("Login", "Account", "", FormMethod.Post, new { id = "home_login", @class = "form-horizontal", role = "form" }))
+                    {
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="modallabel">使用本地帐户登录</h4>
+                        </div>
+                        <div class="modal-body">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <div id="errortip" class="col-sm-offset-3 col-sm-9" style="font-size:16px;">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email, new { @class = "col-sm-3 control-label" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Password, new { @class = "col-sm-3 control-label" })
+                                <div class="col-sm-9">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <div class="checkbox-inline">
+                                        @Html.CheckBoxFor(m => m.RememberMe)
+                                        @Html.LabelFor(m => m.RememberMe)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            @if (Const.RegisterEnabled)
+                            {
+                                <a class="btn btn-default" href="@Url.Action("Register","Account")" style="float:left;">注册...</a>
+                            }
+                            <a class="btn btn-primary" onclick="Home.login()">登录</a>
+                            @*<a class="btn btn-default" data-dismiss="modal">关闭</a>*@
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $("#Password").keypress(function (e) {
+            if (e.which == 13) {
+                Home.login();
+            }
+        })
+    </script>
+}

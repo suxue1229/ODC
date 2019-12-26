@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ODCenter.Base.Sensor>
+@using ODCenter.Base
+
+@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "设备仪表链接";
+}
+
+@Html.Partial("_AdminPartial", ViewData["device"] = "active")
+<p style="padding-top:10px;">
+    <a class="btn btn-default" href="@Url.Action("SensorAdd")">增加仪表</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            仪表名称
+        </th>
+        <th>
+            数据类型
+        </th>
+        <th>
+            仪表类型
+        </th>
+        <th>
+            数据来源
+        </th>
+        <th>
+            数值单位
+        </th>
+        <th>
+            显示顺序
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OrderBy(x => x.Name))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @item.DatType.Description()
+            </td>
+            <td>
+                @item.SenType.Description()
+            </td>
+            <td>
+                @item.Source.Description()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order)
+            </td>
+            <td>
+                @Html.ActionLink("移除仪表", "SensorRemove", new { sid = item.Id.ToString("N") })
+            </td>
+        </tr>
+    }
+</table>

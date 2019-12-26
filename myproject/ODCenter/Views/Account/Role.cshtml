@@ -1,0 +1,35 @@
+﻿@using ODCenter.Controllers;
+@using ODCenter.Models;
+@using ODCenter.Base;
+@model ApplicationUser
+
+@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "账户角色";
+}
+
+@Html.Partial("_AdminPartial", ViewData["account"] = "active")
+<p style="margin-top:16px;">为<strong>@Model.UserName</strong>设置权限。</p>
+<hr />
+@using (Html.BeginForm("Role", "Account", FormMethod.Post, new { id = "role_edit", @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Email)
+    foreach (var role in UserRoles.All())
+    {
+        var roleid = "role_" + role;
+        <div class="form-group">
+            <div class="col-md-12" style="padding-left:60px;">
+                <label class="checkbox">
+                    @Html.CheckBox(roleid, Roles.IsUserInRole(Model.UserName, role)) @role
+                </label>
+            </div>
+        </div>
+    }
+    <hr />
+    <a class="btn btn-default" onclick="Common.selectAll()">全选</a>
+    <a class="btn btn-default" onclick="Common.selectNone()">清除</a>
+    <input type="submit" value="保存" class="btn btn-default" />
+}

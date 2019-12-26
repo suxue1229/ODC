@@ -1,0 +1,34 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "切换机构";
+}
+
+<h2>@ViewBag.Title</h2>
+@Html.Partial("_AccountTabPartial")
+<p style="margin-top:16px;">你正在浏览<strong>@ViewBag.Now</strong>的信息</p>
+@using (Html.BeginForm("Switch", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group">
+        @Html.Label("选择机构", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownList("institute", ViewBag.List as IEnumerable<SelectListItem>, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <div id="btn-inswitch" class="btn btn-default">切换</div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        window.onload = function () {
+            $("#tab_switch").attr("class", "active");
+        }
+        $("#btn-inswitch").click(function () {
+            Account.toggle($("#institute").val());
+        });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

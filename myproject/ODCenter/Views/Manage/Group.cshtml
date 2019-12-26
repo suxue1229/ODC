@@ -1,0 +1,9 @@
+﻿@section Scripts
+{
+    <script type="text/javascript">
+        var controller = "@ViewData["controller"]", group = "@ViewData["group"]", offset = 0;
+        setInterval(Manage.loadList, 1500);
+        window.onload = Manage.loadList;
+    </script>
+}
+<div id="list_panel" class="panel-body row" style="padding:0px;"></div>

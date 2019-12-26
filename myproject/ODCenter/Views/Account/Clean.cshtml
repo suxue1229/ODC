@@ -1,0 +1,61 @@
+﻿@using ODCenter.Base;
+@using ODCenter.Controllers;
+@using ODCenter.Models;
+@using Microsoft.AspNet.Identity.EntityFramework;
+@model ApplicationUser
+@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "账户清理";
+}
+
+@Html.Partial("_AdminPartial", ViewData["account"] = "active")
+
+<h3>删除账户</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Institute)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Institute)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.Email)
+            <input type="submit" value="清理" class="btn btn-default" /> |
+            @Html.ActionLink("返回列表", "Edit")
+        </div>
+    }
+</div>

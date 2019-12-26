@@ -1,0 +1,23 @@
+﻿@section Scripts
+{
+    <script type="text/javascript">
+        var controller = "@ViewData["controller"]", id = "@ViewData["id"]", chart = null, offset = 0;
+        setInterval(Manage.loadDetail, 1500);
+        window.onload = function () { Manage.loadDetail(); Manage.loadTrack(); };
+    </script>
+}
+<div class="frame_header col-xs-12">设备详情</div>
+<div id="detail_panel" class="panel-body row"></div>
+<div class="frame_header col-xs-12">仪表列表</div>
+<div id="sensor_panel" class="panel-body row"></div>
+<div class="frame_header col-xs-12">
+    <div class="col-sm-3" style="float:left;">设备记录</div>
+    <div id="loading_state" class="col-sm-6" style="color:orange;"></div>
+    <div style="float:right;">
+        <button class="btn btn-link" style="padding:0;width:28px;" data-toggle="tooltip" title="新增记录" onclick="Manage.newTrack()"><span class="glyphicon glyphicon-lg glyphicon-plus"></span></button>
+        <button class="btn btn-link" style="padding:0;width:28px;" data-toggle="tooltip" title="刷新纪录" onclick="Manage.loadTrack()"><span class="glyphicon glyphicon-lg glyphicon-refresh"></span></button>
+    </div>
+</div>
+<div id="summary_panel" class="panel-body row"></div>
+<div id="summary_holder" class="panel-body row"></div>
+<button class="btn btn-default" style="float:right;" onclick="javascript:history.back(-1);">返回</button>

@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutOpen.cshtml";
+    ViewBag.Title = "终端连接信息";
+}
+
+<div id="router_link" class="col-md-12" style="margin-top:16px;"></div>
+<div class="col-md-12" style="text-align:center;">
+    <button class="btn btn-default"onclick="javascript:history.back(-1);">返回</button>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        var conn_id = "@ViewData["id"]";
+        setInterval(Router.linkInfo, 3000);
+        $.ready(Router.linkInfo());
+    </script>
+}

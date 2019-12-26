@@ -1,0 +1,193 @@
+﻿@model ODCenter.Models.SensorInfo
+@using ODCenter.Base
+
+@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "删除仪表";
+}
+
+@Html.Partial("_AdminPartial", ViewData["sensor"] = "active")
+<h3>@ViewBag.Title</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Institute)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Institute)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Device)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Device)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatType)
+        </dt>
+
+        <dd>
+            @Model.DatType.Description()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SenType)
+        </dt>
+
+        <dd>
+            @Model.SenType.Description()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inverse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inverse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precise)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precise)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatSource)
+        </dt>
+
+        <dd>
+            @Model.DatSource.Description()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPCHost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPCHost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPCServer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPCServer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPCItem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPCItem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interval)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interval)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Minimum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Minimum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maximum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maximum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gain)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gain)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Offset)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Offset)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Important)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Important)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Enabled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enabled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modifier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modifier)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回列表", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ODCenter.Models.InstituteInfo>
+@using ODCenter.Base
+
+@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "机构管理";
+}
+
+@Html.Partial("_AdminPartial", ViewData["institute"] = "active")
+<p style="padding-top:10px;">
+    <a class="btn btn-default" href="@Url.Action("Create")">创建机构</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Summary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enabled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modifier)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OrderBy(x => x.Name))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @item.Type.Description()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                <span class="glyphicon glyphicon-md glyphicon-globe" title="经度：@item.Longitude &#13;纬度：@item.Latitude"></span>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                <span class="glyphicon glyphicon-md glyphicon-tag" title="@item.Summary"></span>
+            </td>
+            <td>
+                @ExtMvc.IconStatus(item.Enabled)
+            </td>
+            <td>
+                <span class="glyphicon glyphicon-md glyphicon-user" title="@item.Modifier"></span>
+            </td>
+            <td>
+
+                @if (item.Enabled)
+                {
+                    <a class="btn btn-manage" href="@Url.Action("Edit", new { id = item.Id.ToString("N") })" title="编辑"><span class="fa fa-edit"></span></a>
+                    <a class="btn btn-manage" href="@Url.Action("Details", new { id = item.Id.ToString("N") })" title="详细信息"><span class="fa fa-info-circle"></span></a>
+                    <a class="btn btn-manage" href="@Url.Action("Index", "Group", new { id = item.Id.ToString("N") })" title="分组"><span class="fa fa-th-list"></span></a>
+                    <a class="btn btn-manage" href="@Url.Action("Index", "Client", new { id = item.Id.ToString("N") })" title="客户端"><span class="fa fa-gg"></span></a>
+                    <a class="btn btn-manage" href="@Url.Action("Index", "Device", new { id = item.Id.ToString("N") })" title="设备"><span class="fa fa-cogs"></span></a>
+                    <a class="btn btn-manage" href="@Url.Action("Index", "Sensor", new { id = item.Id.ToString("N") })" title="仪表"><span class="fa fa-thermometer"></span></a>
+                    <a class="btn btn-manage" href="@Url.Action("List", "Report", new { id = item.Id.ToString("N") })" title="报表"><span class="fa fa-file-image-o"></span></a>
+                    <a class="btn btn-manage" href="@Url.Action("Delete", new { id = item.Id.ToString("N") })" title="删除"><span class="fa fa-trash-o"></span></a>
+                }
+            </td>
+
+        </tr>
+    }
+</table>

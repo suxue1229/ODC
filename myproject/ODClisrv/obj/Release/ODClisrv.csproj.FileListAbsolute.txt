@@ -1,0 +1,12 @@
+E:\workspace\ODCenter\ODClisrv\bin\Release\ODClisrv.exe
+E:\workspace\ODCenter\ODClisrv\bin\Release\Newtonsoft.Json.dll
+E:\workspace\ODCenter\ODClisrv\bin\Release\ptrcore.dll
+E:\workspace\ODCenter\ODClisrv\bin\Release\Newtonsoft.Json.xml
+E:\workspace\ODCenter\ODClisrv\obj\Release\ODClisrv.csprojAssemblyReference.cache
+E:\workspace\ODCenter\ODClisrv\obj\Release\Interop.OPCAutomation.dll
+E:\workspace\ODCenter\ODClisrv\obj\Release\ODClisrv.csproj.ResolveComReference.cache
+E:\workspace\ODCenter\ODClisrv\obj\Release\ODClisrv.ProjectInstaller.resources
+E:\workspace\ODCenter\ODClisrv\obj\Release\ODClisrv.csproj.GenerateResource.cache
+E:\workspace\ODCenter\ODClisrv\obj\Release\ODClisrv.csproj.CoreCompileInputs.cache
+E:\workspace\ODCenter\ODClisrv\obj\Release\ODClisrv.csproj.CopyComplete
+E:\workspace\ODCenter\ODClisrv\obj\Release\ODClisrv.exe

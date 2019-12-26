@@ -1,0 +1,126 @@
+﻿@using ODCenter.Base
+@model IEnumerable<ODCenter.Models.SensorInfo>
+
+@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "批量导入仪表";
+    List<String> fails = ViewData["fails"] as List<String>;
+}
+
+@Html.Partial("_AdminPartial", ViewData["sensor"] = "active")
+<div>
+    <h4>@ViewBag.Title</h4>
+    <hr style="margin-top:5px;margin-bottom:5px;" />
+    <p class="text-center" style="font-size:20px;font-weight:bold;">Sensors</p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SenType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatSource)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OPCHost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OPCServer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OPCItem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Interval)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Minimum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Maximum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gain)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Offset)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Unit)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.SenType)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.DatType)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.DatSource)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OPCHost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OPCServer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OPCItem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Interval)
+                </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Minimum)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Maximum)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gain)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Offset)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unit)
+                </td>
+            </tr>
+        }
+    </table>
+    <hr />
+    @if (fails.Count > 0)
+    {
+        <p style="margin-bottom:0; font-size:16px;font-weight:bold;color:red;">处理导入信息时出错，请返回上一步，对下列信息修改后重试</p>
+        foreach (string s in fails)
+        {
+            <p style="margin-bottom:0; padding:0;font-size:16px;color:red;">"@s"</p>
+        }
+        <hr />
+        <a class="btn btn-default btn-primary" onclick="javascript: history.back(-1);">上一步</a>
+    }
+    else
+    {
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("Sentxt", @ViewData["sentxt"])
+            @Html.Hidden("commit", "true")
+            <a class="btn btn-default" onclick="javascript: history.back(-1);">上一步</a>
+            <input class="btn btn-default btn-primary" type="submit" value="提交" />
+        }
+    }
+</div>
+

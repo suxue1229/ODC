@@ -1,0 +1,35 @@
+﻿@section Scripts
+{
+    <script type="text/javascript">
+        var controller = "@ViewData["controller"]", id = "@ViewData["id"]", zoomlevel = 0, offset=0;
+        setInterval(Monitor.loadDetail, 1500);
+        window.onload = function () { Monitor.loadDetail(); Monitor.loadChart(0); };
+        var chart = null, chart_dat = null, chart_hdl = null;
+        window.onresize = function () {
+            //if (chart) {
+            //    chart.clear();
+            //}
+            if (chart_hdl) {
+                clearTimeout(chart_hdl);
+            }
+            chart_hdl = setTimeout(Monitor.drawChart, 500);
+        }
+    </script>
+}
+<div class="frame_header col-xs-12">仪表详情</div>
+<div id="detail_panel" class="panel-body row"></div>
+<div class="frame_header col-xs-12">
+    <div class="col-sm-3" style="float:left;">历史数据</div>
+    <div id="loading_state" class="col-sm-6" style="color:orange;"></div>
+    <div style="float:right;">
+        <button id="chart_zoomout" class="btn btn-link" style="padding:0px;width:28px;" data-toggle="tooltip" title="放大视图" onclick="Monitor.loadChart(1)"><span class="glyphicon glyphicon-lg glyphicon-zoom-out"></span></button>
+        <button id="chart_zoomin" class="btn btn-link" style="padding:0px;width:28px;" data-toggle="tooltip" title="缩小视图" onclick="Monitor.loadChart(-1)"><span class="glyphicon glyphicon-lg glyphicon-zoom-in"></span></button>
+        <button id="chart_refresh" class="btn btn-link" style="padding:0px;width:28px;" data-toggle="tooltip" title="刷新历史" onclick="Monitor.loadChart(0)"><span class="glyphicon glyphicon-lg glyphicon-refresh"></span></button>
+    </div>
+</div>
+<div id="chart_tip" class="panel-body row text-center"></div>
+<canvas id="chart_panel" class="panel-body row" width="320" height="240"></canvas>
+<div class="frame_header col-xs-12">统计信息</div>
+<div id="summary_panel" class="panel-body row"></div>
+<div id="sen_edit_panel"></div>
+<button class="btn btn-default" style="float:right;" onclick="javascript:history.back(-1);">返回</button>

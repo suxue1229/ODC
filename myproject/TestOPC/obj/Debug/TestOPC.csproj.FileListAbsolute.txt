@@ -1,0 +1,10 @@
+E:\workspace\odcenter\TestOPC\obj\Debug\TestOPC.MainFrom.resources
+E:\workspace\odcenter\TestOPC\obj\Debug\TestOPC.Properties.Resources.resources
+E:\workspace\odcenter\TestOPC\obj\Debug\TestOPC.csproj.GenerateResource.cache
+E:\workspace\odcenter\TestOPC\obj\Debug\TestOPC.csproj.CoreCompileInputs.cache
+E:\workspace\ODCenter\TestOPC\bin\Debug\TestOPC.exe.config
+E:\workspace\ODCenter\TestOPC\bin\Debug\TestOPC.exe
+E:\workspace\ODCenter\TestOPC\bin\Debug\TestOPC.pdb
+E:\workspace\ODCenter\TestOPC\obj\Debug\TestOPC.exe
+E:\workspace\ODCenter\TestOPC\obj\Debug\TestOPC.pdb
+E:\workspace\ODCenter\TestOPC\obj\Debug\TestOPC.csprojAssemblyReference.cache

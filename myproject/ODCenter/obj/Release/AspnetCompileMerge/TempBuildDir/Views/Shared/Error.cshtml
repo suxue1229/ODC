@@ -1,0 +1,16 @@
+﻿@using ODCenter.Controllers
+@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    Layout = null;
+    ViewBag.Title = "错误";
+}
+
+<h1 class="text-danger">处理请求时出错</h1>
+<h4 class="text-danger">@Model.Exception.Message</h4>
+@if (@User.IsInRole(UserRoles.Admin))
+{
+    <h4 class="text-danger">@Model.Exception.StackTrace</h4>
+}
+@Html.ActionLink("Back", @Model.ActionName, @Model.ControllerName)|@Html.ActionLink("Index", "Index", "Home")
+

@@ -1,0 +1,67 @@
+﻿@model ODCenter.Models.ReportInfo
+
+@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+    ViewBag.Title = "报表详情";
+}
+
+@Html.Partial("_AdminPartial", ViewData["report"] = "active")
+
+<div>
+    <h4>报表信息</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Institute)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Institute)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PageInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PageInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataSource)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataSource)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Enabled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enabled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modifier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modifier)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "Edit", new { id = Model.Id.ToString("N") }) |
+    @Html.ActionLink("返回列表", "List")
+</p>

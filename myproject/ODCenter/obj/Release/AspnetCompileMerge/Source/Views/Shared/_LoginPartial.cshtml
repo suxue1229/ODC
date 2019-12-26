@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNet.Identity
+@using ODCenter.Base;
+@using System.Security.Claims;
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+    }
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("你好 " + User.Identity.GetUserName() + "!", "Info", "Account", routeValues: null, htmlAttributes: new { title = "管理" })
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "Map")">
+                @{
+    var name = "Unknown";
+    var claims = User.Identity as ClaimsIdentity;
+    if (claims != null)
+    {
+        var ins = claims.FindFirst(Const.Claim_Institute_Name);
+        if (ins != null)
+        {
+            name = ins.Value;
+        }
+    }
+    @name
+                }
+            </a>
+        </li>
+        @if (User.IsInRole(UserRoles.Admin))
+        {
+            <li><a href="@Url.Action("Index","Institute")">管理页面</a></li>
+        }
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">注销</a></li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("登录", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        @if (Const.RegisterEnabled)
+        {
+            <li>@Html.ActionLink("注册", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        }
+    </ul>
+}
