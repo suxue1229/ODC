@@ -750,8 +750,6 @@
     <Content Include="Scripts\Custom\map.js" />
     <None Include="Scripts\script-src.txt" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Update\ODClient.exe" />
-    <Content Include="Update\Update.exe" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -864,6 +862,7 @@
     <Folder Include="Images\Group\" />
     <Folder Include="Images\Institute\" />
     <Folder Include="Resource\" />
+    <Folder Include="Update\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

@@ -34,3 +34,4 @@ E:\workspace\ODCenter\ODClisrv\obj\Debug\ODClisrv.csproj.CoreCompileInputs.cache
 E:\workspace\ODCenter\ODClisrv\obj\Debug\ODClisrv.csproj.CopyComplete
 E:\workspace\ODCenter\ODClisrv\obj\Debug\ODClisrv.exe
 E:\workspace\ODCenter\ODClisrv\obj\Debug\ODClisrv.pdb
+E:\workspace\ODCenter\ODClisrv\obj\Debug\ODClisrv.csprojAssemblyReference.cache

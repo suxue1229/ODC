@@ -73,7 +73,7 @@ namespace ODClisrv
                 try
                 {
                     var json = new JObject(
-                        new JProperty("host", "http://localhost/ODCenter/"),
+                        new JProperty("host", "http://www.oriwater.cn/"),
                         new JProperty("id", Guid.Empty.ToString("N"))
                         );
                     using (FileStream stream = new FileStream(srvCfgFile, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
@@ -130,7 +130,7 @@ namespace ODClisrv
             {
                 try
                 {
-                    String addr = host.TrimEnd('/') + "/Update/Check/" + uuid;
+                    String addr = host.TrimEnd('/') + "/Update/Check";
                     String updstr = GetWebContent(addr, null);
                     if (!String.IsNullOrWhiteSpace(updstr))
                     {
